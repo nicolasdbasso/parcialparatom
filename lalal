@@ -1,0 +1,33 @@
+int imprimirClienteMasConPendiente(Cliente *clientes, int lengthC,
+		Recoleccion *recolecciones, int lengthR) {
+
+	int retorno = -1;
+	int i;
+	int j;
+	int contador = 0;
+	int idConMas = 0;
+	int contadorAux;
+	if (clientes != NULL && lengthC >= 0 && recolecciones != NULL
+			&& lengthR >= 0) {
+			for (i = 0; i < lengthC; i++) {
+				if (contador > contadorAux)
+					idConMas = i-1;
+				contador = 0;
+				if (clientes[i].isEmpty == 0)
+					continue;
+				else {
+					for (j = 0 ; j < lengthR ; j++){
+						if (recolecciones[j].isEmpty == 1 && recolecciones[j].clienteId == clientes[i].id && recolecciones[j].estado ==0)
+							contador++;
+					}
+				}
+
+			retorno = 0;
+		}
+	}
+				printf("\nID del Cliente: %d\nNombre de la empresa: %s\n CUIT: %d\n Direccion: %s\n Localidad: %s",
+																		clientes[idConMas].id, clientes[idConMas].nombre,
+																		clientes[idConMas].cuit, clientes[idConMas].direccion,
+																		clientes[idConMas].localidad);
+	return retorno;
+}
